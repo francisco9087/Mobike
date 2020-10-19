@@ -1,0 +1,35 @@
+
+    {%extends "MobikeApp/base.html" %}
+
+    {%load static%}
+    {%load crispy_forms_tags%}
+
+    {%block content%}
+
+        {% if form.errors %}
+            <div class="alert alert-danger" role="alert">
+            This is a danger alert—check it out!
+          </div>
+        {% endif %}
+
+        
+        <div class="container formIngreso col-lg-4">
+          <h1>Ingreso Cliente</h1>
+                <form action="{%url 'guardar_cliente'%}" method="POST">
+                    {% csrf_token %}
+                    {% if mensaje %}
+                      <div class="alert alert-success" role="alert">
+                          Cliente registrado exitosamente
+                      </div>
+                    {% endif %}
+                  
+                    {{ form|crispy }}
+
+                  
+                    <button type="submit" class="btn btn-primary">GUARDAR</button>
+                  </form>
+            
+        </div>
+        
+    {%endblock %}
+   
